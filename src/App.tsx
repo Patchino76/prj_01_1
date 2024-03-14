@@ -12,7 +12,7 @@ import axios from "axios";
 
 function App() {
 
-  // const tasks = useTasksStore((state) => state.tasks);
+  //  const tasks = useTasksStore((state) => state.tasks);
 
   const fetchTasks = () => 
     axios
@@ -23,7 +23,7 @@ function App() {
   const { data: tasks  = []} = useQuery({ //data is a prop of the qry object, tasks is an alias
     queryKey: ["tasks"],
     queryFn: fetchTasks
-  })
+  }) 
 
   return (
     <>
