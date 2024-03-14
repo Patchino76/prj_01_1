@@ -2,22 +2,23 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 
 interface TagProps {
-  tagName: string;
-  selectTag: (tag: string) => void;
+  tagData: { id: number; tag: string };
+  selectTag: (tag: { id: number; tag: string }) => void;
 }
 
-const Tag = ({ tagName, selectTag }: TagProps) => {
+const Tag = ({ tagData, selectTag }: TagProps) => {
   const [butChecked, setButChecked] = useState(false);
+
   return (
     <Button
       variant="outlined"
       color={butChecked ? "success" : "info"}
       onClick={() => {
-        selectTag(tagName);
+        selectTag(tagData);
         setButChecked(!butChecked);
       }}
     >
-      {tagName}
+      {tagData.tag}
     </Button>
   );
 };

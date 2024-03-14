@@ -1,13 +1,13 @@
 import { Button } from "@mui/material";
 
 interface TagProps {
-  tagName: string;
+  tag: string;
 }
 
-const TagLabel = ({ tagName }: TagProps) => {
+const TagLabel = ({ tag }: TagProps) => {
   return (
     <Button variant="outlined" color="success">
-      {tagName}
+      {tag}
     </Button>
   );
 };

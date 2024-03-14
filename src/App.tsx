@@ -6,24 +6,15 @@ import { GoGoal } from "react-icons/go";
 import { TbProgressCheck } from "react-icons/tb";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { MdOutlinePending } from "react-icons/md";
-import { TaskData, useTasksStore } from "./components/store";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import useTasks from "./hooks/useTasks";
+import useTasksStore from "./components/store";
+
 
 function App() {
 
-  //  const tasks = useTasksStore((state) => state.tasks);
-
-  const fetchTasks = () => 
-    axios
-      .get<TaskData[]>("http://127.0.0.1:8000/tasks")
-      .then((res) => res.data);
-  
-
-  const { data: tasks  = []} = useQuery({ //data is a prop of the qry object, tasks is an alias
-    queryKey: ["tasks"],
-    queryFn: fetchTasks
-  }) 
+  const {data = []} = useTasks()
+  useTasksStore.setState({tasks : data})
+  const tasks = useTasksStore((state) => state.tasks)
 
   return (
     <>

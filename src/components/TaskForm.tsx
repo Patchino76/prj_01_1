@@ -1,18 +1,18 @@
 import { Box, Button, MenuItem, Select, Stack, TextField } from "@mui/material";
 import Tag from "./Tag";
 import { useState } from "react";
-import { TaskData, useTasksStore } from "./store";
+import useTasksStore from "./store";
+import { Tasks } from "../hooks/useTasks";
 
 const TaskForm = () => {
-  const [taskData, setTaskData] = useState<TaskData>({
-    taskName: "",
-    taskStatus: "",
-    tagNames: [],
+  const [taskData, setTaskData] = useState<Tasks>({
+    title: "",
+    status: "",
+    tags: [],
   });
 
   const tasks = useTasksStore((state) => state.tasks);
   const addTask = useTasksStore((state) => state.addTask);
-  const removeTask = useTasksStore((state) => state.removeTask);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -26,41 +26,41 @@ const TaskForm = () => {
     addTask(taskData);
     console.log(tasks);
   };
-  const selectTag = (tag: string) => {
+  const selectTag = (tag : {id: number, tag: string}) => {
     setTaskData((prev) => {
-      const filteredTags = prev.tagNames.includes(tag)
-        ? prev.tagNames.filter((item) => item !== tag)
-        : [...prev.tagNames, tag];
-      return { ...prev, tagNames: filteredTags };
+      const filteredTags = prev.tags.includes(tag)
+        ? prev.tags.filter((item) => item !== tag)
+        : [...prev.tags, tag];
+      return { ...prev, tags: filteredTags };
     });
   };
-  // console.log(taskData.taskName, taskData.taskStatus, taskData.tagNames);
   return (
     <Box justifyContent={"center"} width={"100vw"} sx={{ p: 2 }}>
       <header>Задачи</header>
       <form onSubmit={handleSubmit}>
         <TextField
-          name="taskName"
+          name="title"
           fullWidth
           sx={{ mt: 1, mb: 1 }}
           id="outlined-basic"
           label="Въведете задача"
           variant="outlined"
-          value={taskData.taskName}
+          value={taskData.title}
           onChange={handleChange}
         />
         <Stack direction="row" justifyContent={"space-between"} height={50}>
           <Stack direction="row" spacing={2} sx={{ pt: 1, pb: 1 }}>
-            <Tag tagName="HTML" selectTag={selectTag} />
-            <Tag tagName="CSS" selectTag={selectTag} />
-            <Tag tagName="JS" selectTag={selectTag} />
-            <Tag tagName="TS" selectTag={selectTag} />
+            <Tag tagData={{id: 1, tag: "HTML"}} selectTag={selectTag} />
+            <Tag tagData={{id: 2, tag: "CSS"}} selectTag={selectTag} />
+            <Tag tagData={{id:3, tag: "JS"}} selectTag={selectTag} />
+            <Tag tagData={{id: 4, tag: "TS"}} selectTag={selectTag} />
           </Stack>
+
           <Stack direction="row" spacing={2} sx={{ pt: 1, pb: 1 }}>
             <Select
-              name="taskStatus"
+              name="status"
               sx={{ mt: 2, width: 200 }}
-              value={taskData.taskStatus}
+              value={taskData.status}
               label="Статус на задачата"
               onChange={handleChange}
             >

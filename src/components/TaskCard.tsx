@@ -7,10 +7,12 @@ import {
 } from "@mui/material";
 
 import { AiFillDelete } from "react-icons/ai";
-import { TaskData, useTasksStore } from "./store";
 import TagLabel from "./TagLabel";
+import { Tasks } from "../hooks/useTasks";
+import useTasksStore from "./store";
+
 interface TaskCardProps {
-  task: TaskData;
+  task: Tasks;
 }
 
 const TaskCard = ({task}: TaskCardProps) => {
@@ -23,7 +25,7 @@ const TaskCard = ({task}: TaskCardProps) => {
           color="text.secondary"
           gutterBottom
         >
-          {task.taskName}
+          {task.title}
         </Typography>
 
         <Stack
@@ -33,8 +35,8 @@ const TaskCard = ({task}: TaskCardProps) => {
           sx={{ height: 30 }}
         >
           <Stack direction={"row"} spacing={1}>
-            {task.tagNames.map((tagName, index) => (
-              <TagLabel tagName={tagName} key={index} />
+            {task.tags.map((tag) => (
+              <TagLabel tag={tag.tag} key={tag.id} />
             ))}
           </Stack>
           <IconButton onClick={() => removeTask(task)}>

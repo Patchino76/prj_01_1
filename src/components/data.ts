@@ -1,29 +1,29 @@
-import { TaskData } from "./store";
+import { Tasks } from "./store";
 
-export const taskData: TaskData[] = [
+export const Tasks: Tasks[] = [
     {
-      taskName: "Finish shopping list",
-      taskStatus: "To Do",
-      tagNames: ["CSS", "JS"],
+      title: "Finish shopping list",
+      status: "To Do",
+      tags: ["CSS", "JS"],
     },
     {
-      taskName: "Write report for meeting",
-      taskStatus: "In Progress",
-      tagNames: ["HTML", "TS"],
+      title: "Write report for meeting",
+      status: "In Progress",
+      tags: ["HTML", "TS"],
     },
     {
-      taskName: "Call mom for birthday",
-      taskStatus: "Done",
-      tagNames: ["JS", "CSS"],
+      title: "Call mom for birthday",
+      status: "Done",
+      tags: ["JS", "CSS"],
     },
     {
-      taskName: "Fix leaky faucet",
-      taskStatus: "To Do",
-      tagNames: ["HTML", "TS", "CSS"],
+      title: "Fix leaky faucet",
+      status: "To Do",
+      tags: ["HTML", "TS", "CSS"],
     },
     {
-      taskName: "Learn a new skill",
-      taskStatus: "On Hold",
-      tagNames: ["CSS", "JS"],
+      title: "Learn a new skill",
+      status: "On Hold",
+      tags: ["CSS", "JS"],
     },
   ];

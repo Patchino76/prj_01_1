@@ -1,16 +1,17 @@
 import { Stack } from "@mui/material";
 import TaskCard from "./TaskCard";
-import { TaskData } from "./store";
-// import { IconType } from "react-icons";
+import { Tasks } from "../hooks/useTasks";
+
 
 interface TaskColumnProps {
   title: string;
-  tasks: TaskData[];
+  tasks: Tasks[];
   icon: JSX.Element;
 }
 
 const TaskColumn = ({ title, tasks, icon }: TaskColumnProps) => {
-  const tasksFiltered = tasks.filter((task) => task.taskStatus === title);
+  const tasksFiltered = tasks.filter((task) => task.status === title);
+  console.log(tasksFiltered)
   return (
     <Stack direction="column" spacing={2} sx={{ p: 2 }}>
       <Stack direction="row" spacing={2} alignItems="center">
